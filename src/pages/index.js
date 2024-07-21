@@ -3,9 +3,9 @@ import styled from "styled-components";
 import MainTemplate from "../templates/MainTemplates";
 
 import LogoIcon from "../assets/icons/LogoIcon";
+import BrandRectangleIcon from "../assets/icons/brandRectangleIcon";
 
 const PageWrapper = styled.div`
-  height: 100vh;
   padding: 11px 8px 24px;
   background-color: #000;
 `;
@@ -13,25 +13,133 @@ const PageWrapper = styled.div`
 const ListSections = styled.ul`
   display: flex;
   flex-direction: column;
-  gap: 11px;
+  gap: 8px;
   list-style: none;
 
   li {
-    height: 9.4vh;
+    height: 62px;
+    padding: 16px;
+    position: relative;
     background-color: ${({ theme }) => theme.colors.background.secondary};
     overflow-y: hidden;
     border-radius: 16px;
+    transition: height .5s ease-in-out, background-color .5s ease-in-out;
+
+    .logo-and-title-box {
+      display: flex;
+      justify-content: space-between;
+    }
 
     .section-title {
-      font-size: ${({ theme }) => theme.font.heading.mobile.h2};
       line-height: ${({ theme }) => theme.lineheight.heading};
+      color: ${({ theme }) => theme.colors.text.primary};
+      
+
+      .big-title, .small-title {
+        position: absolute;
+        right: 16px;
+        width: max-content;
+        transition: opacity .4s ease-in-out;
+      }
+
+      .big-title::after, .small-title::after {
+        content: '';
+        display: block;
+        width: 24px;
+        height: 1px;
+        background-color: ${({theme}) => theme.colors.text.primary};
+        position: absolute;
+        right: 0;
+        margin-top: 2px;
+      }
+
+      .big-title {
+        font-size: ${({ theme }) => theme.font.heading.mobile.h1};
+        opacity: 0;
+        font-weight: 600;
+      }
+      
+      .small-title {
+        font-size: ${({ theme }) => theme.font.heading.mobile.h2};
+        font-weight: 500;
+      }
+      
+    }
+
+    .description {
+      margin-top: 76px;
+      color: ${({ theme }) => theme.colors.text.primary};    
+      font-size: ${({ theme }) => theme.font.body.small};
+      line-height: ${({ theme }) => theme.lineheight.body};
+      font-weight: 300;
+      letter-spacing: 0.01em;
+    }
+
+    .brand-rectangle-icon-box {
+      text-align: end;
+      opacity: 0;
+      transition: opacity .3s ease-in-out;
+
+      svg {
+        width: 24px !important;
+        height: 24px !important;
+      }
     }
   }
 
-  li.active {
-    height: 61.8vh;
+  li.about-section {
+    .description {
+      margin-top: 32px;
+    }
   }
 
+  li.ralizations-section,  li.contact-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .brand-rectangle-icon-box { 
+      flex-grow: 1;
+      display: flex;
+      justify-content: end;
+      align-items: end;
+    }
+  }
+
+  li.contact-section .contact-data-box {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 24px;
+    color: ${({ theme }) => theme.colors.text.primary};
+
+    span {
+      font-size: ${({ theme }) => theme.font.body.small};
+      font-weight: 600;
+    }
+  }
+
+  li.contact-section .second-description {
+    margin-top: 24px;
+  }
+
+  li.active {
+    height: 511px;
+    background-color: ${({ theme }) => theme.colors.background.primary};
+
+    .section-title .big-title {
+      opacity: 100;
+    }
+
+    .section-title .small-title {
+      opacity: 0;
+    }
+
+    .brand-rectangle-icon-box {
+      opacity: 100;
+    }
+  }
+ 
   svg {
     width: 32px;
     height: 32px;
@@ -39,56 +147,107 @@ const ListSections = styled.ul`
 `;
 
 const IndexPage = () => {
+  document.body.style.backgroundColor = "#000";
+
+  React.useEffect(() => {
+    const listItems = document.querySelectorAll(".list-item");
+    
+    listItems.forEach((item) => {
+      item.addEventListener('click', () => {        
+        listItems.forEach((item) => {
+          item.classList.remove('active');
+        });
+        item.classList.add('active');
+      });
+    });
+  });  
+
   return (
-    <MainTemplate>
-      <PageWrapper>
-        <ListSections>
-          <li className="list-item about-section active">
-            <div className="logo-box">
-              <LogoIcon />
-            </div>
-            <h1 className="section-title">O nas</h1>
-            <p className="description">
-              Nasza firma powstała z pasji do budowania i kreowania wyjątkowych
-              przestrzeni. Od lat dostarczamy najwyższej jakości usługi
-              budowlane, łącząc nowoczesne technologie z tradycyjnym rzemiosłem.
-                Dążymy do innowacyjności, zrównoważonego rozwoju i doskonałości
-              we wszystkim, co robimy. Nasz zespół składa się z doświadczonych
-              specjalistów, którzy każdego dnia realizują ambitne projekty,
-              dbając o każdy szczegół i zadowolenie klientów.
-            </p>
-          </li>
-          <li className="list-item services-section">
-            <h1 className="section-title">Usługi</h1>
-            <p className="description">
-              Oferujemy kompleksowe usługi budowlane, które obejmują każdy etap
-              realizacji projektu. Od starannego planowania i projektowania,
-              przez profesjonalną budowę, aż po zarządzanie projektem –
-              zapewniamy pełne wsparcie na każdym kroku.   Dzięki naszym
-              doświadczeniu i zaangażowaniu, jesteśmy w stanie sprostać nawet
-              najbardziej wymagającym wyzwaniom, dostarczając rozwiązania, które
-              łączą funkcjonalność, estetykę i trwałość.
-            </p>
-          </li>
-          <li className="list-item ralizations-section">
-            <h1 className="section-title">Realizacje</h1>
-            <p className="description">
-              Jesteśmy dumni z naszych licznych realizacji, które obejmują
-              zarówno nowoczesne apartamenty, przestrzenie komercyjne, jak i
-              projekty infrastrukturalne. Każdy z naszych projektów to
-              świadectwo naszego zaangażowania w najwyższą jakość i innowacyjne
-              podejście do budownictwa. Zapraszamy do zapoznania się z naszym
-              portfolio, które prezentuje naszą wszechstronność i zdolność do
-              tworzenia przestrzeni, które inspirują i służą społeczności przez
-              wiele lat.
-            </p>
-          </li>
-          <li className="list-item contact-section">
-            <h1 className="section-title">Kontakt</h1>
-          </li>
-        </ListSections>
-      </PageWrapper>
-    </MainTemplate>
+    <>
+      {" "}
+      <MainTemplate>
+        <PageWrapper>
+          <ListSections>
+            <li className="list-item about-section active">
+              <div className="logo-and-title-box">
+                {" "}
+                <div className="logo-box">
+                  <LogoIcon />
+                </div>
+                <h1 className="section-title">
+                  <span className="big-title">O nas</span>
+                  <span className="small-title">O nas</span>
+                </h1>
+              </div>
+              <p className="description">
+                <b>SEGMENTS</b> to firma stworzona z pasji do budownictwa, kreowania wyjątkowych przestrzeni oraz dostarczania wysokiej jakości usług dla przemysłu. Nasz zespół liczy 50 zdolnych i wyjątkowych osób, które nie znają rzeczy niemożliwych i dążą do doskonałości. W SEGMENTS zespół składa się z 30 specjalistów przemysłowych oraz 20 ekspertów w dziedzinie budownictwa.<br /><br />
+                <b>Nasza filozofia</b><br /><br />
+                Wierzymy, że połączenie pasji z profesjonalizmem jest kluczem do osiągnięcia najwyższej jakości usług. Nasza firma kładzie nacisk na innowacyjność, precyzję i ciągłe dążenie do doskonałości. Niezależnie od projektu, nasz zespół podejmuje się wyzwań z determinacją i zaangażowaniem.
+              </p>
+              <div className="brand-rectangle-icon-box">
+                <BrandRectangleIcon />
+              </div>
+            </li>
+            <li className="list-item services-section">
+              <h1 className="section-title">
+                <span className="big-title">Usługi</span>
+                <span className="small-title">Usługi</span>
+              </h1>
+              <p className="description">
+                <b style={{fontSize: "16px"}}>Budownictwo i nieruchomości</b><br /><br />
+                Jesteśmy pasjonatami budownictwa i nieruchomości. Oferujemy: uzbrajanie terenów, budownictwo jednorodzinne i wielorodzinne, nowoczesne projektowanie, sprzedaż inwestycji deweloperskich. Naszym priorytetem jest jakość i innowacyjność. Dołącz do naszej pasjonującej podróży!<br /><br />
+                <b style={{fontSize: "16px"}}>Przemysł</b> <br /><br />
+                SEGMENTS to butikowy dostawca usług przemysłowych. Oferujemy budowę linii produkcyjnych, spawalnictwo, utrzymanie ruchu, kontrolę jakości, naprawy maszyn, wsparcie logistyczne i produkcyjne. Zaufaj naszym specjalistom w zapewnieniu najwyższej jakości usług.
+              </p>
+            </li>
+            <li className="list-item ralizations-section">
+              <h1 className="section-title">
+                <span className="big-title">Realizacje</span>
+                <span className="small-title">Realizacje</span>
+              </h1>
+              <p className="description">
+              Oferujemy kompleksowe usługi budowlane, które obejmują każdy etap realizacji projektu. Od starannego planowania i projektowania, przez profesjonalną budowę, aż po zarządzanie projektem – zapewniamy pełne wsparcie na każdym kroku. <br /><br />
+              Dzięki naszym doświadczeniu i zaangażowaniu, jesteśmy w stanie sprostać nawet najbardziej wymagającym wyzwaniom, dostarczając rozwiązania, które łączą funkcjonalność, estetykę i trwałość.
+              </p>
+              <div className="brand-rectangle-icon-box">
+                <BrandRectangleIcon />
+              </div>
+            </li>
+            <li className="list-item contact-section">
+              <h1 className="section-title">
+                <span className="big-title">Kontakt</span>
+                <span className="small-title">Kontakt</span>
+              </h1>
+              <div class="contact-texts-box">
+                <p className="description">
+                  Masz pytania, chcesz dowiedzieć się więcej lub umówić się na spotkanie? Skorzystaj z poniższych danych kontaktowych:
+                </p>
+                <div className="contact-data-box">
+                  <div className="phone-link-box">
+                    <span>Telefon:</span>
+                    <a href="tel:"></a>
+                  </div>
+                  <div className="adress-link-box">
+                    <span>E-mail:</span>
+                    <a href= "mailto: "></a>
+                  </div>
+                  <div className="adress-data-box">
+                    <span>Adres:</span>
+                  </div>
+                </div>
+                <p className="second-description description">
+                   Najpiękniejsze historie zaczynają się od jednego telefonu. Dlatego nie wahaj się skontaktować - jestem tutaj, aby Ci pomóc!<br /><br />
+                <b>Jakub Duraj</b>
+                </p>
+              </div>
+              <div className="brand-rectangle-icon-box">
+                <BrandRectangleIcon />
+              </div>
+            </li>
+          </ListSections>
+        </PageWrapper>
+      </MainTemplate>
+    </>
   );
 };
 

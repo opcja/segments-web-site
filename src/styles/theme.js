@@ -11,7 +11,16 @@ export const theme = {
       secondary: "#C1C1C1",
       disabled: "#C2C2C2",
       brandred: "#FF2C2C",
+      error: "#FF036D",
     },
+
+    border: {
+        primary: "#EAEAEA",       
+        secondary: "#FFFFFF",
+        disabled: "#C2C2C2",
+        success: "#328448",
+        error: "#FF036D"
+    }
   },
 
   font: {
@@ -21,7 +30,7 @@ export const theme = {
         h2: "32px",
       },
       mobile: {
-        h1: "28px",
+        h1: "24px",
         h2: "20px",
       },
     },
@@ -33,7 +42,7 @@ export const theme = {
   },
 
   lineheight: {
-    heading: "120%",
-    body: "150%",
+    heading: "1.2",
+    body: "1.5",
   },
 };
