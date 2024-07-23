@@ -193,7 +193,10 @@ const ListSections = styled.ul`
 `;
 
 const IndexPage = () => {
-  document.body.style.backgroundColor = "#000";
+  React.useEffect(() => {
+    document.body.style.backgroundColor = "#000";
+  },[]);
+  
 
   React.useEffect(() => {
     const listItems = document.querySelectorAll(".list-item");
@@ -206,7 +209,7 @@ const IndexPage = () => {
         item.classList.add('active');
       });
     });
-  });  
+  },[]);  
 
   return (
     <>
