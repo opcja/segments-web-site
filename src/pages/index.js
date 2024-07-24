@@ -12,8 +12,7 @@ const PageWrapper = styled.div`
   display: flex;
 
   @media (max-width: 768px) and (min-height: 760px) {
-    position: fixed;
-    max-height: 100%;
+    max-height: 100dvh;
     overflow-y: hidden;
   }
 
@@ -137,7 +136,7 @@ const ListSections = styled.ul`
 
     @media (max-width: 768px) and (min-height: 760px) {
       .content-box {
-        min-height: calc(100vh - 240px);
+        min-height: calc(100vh - 254px);
       }
     }
   }
@@ -188,7 +187,7 @@ const ListSections = styled.ul`
     }
 
     @media (max-width: 768px) and (min-height: 760px) { 
-      height: calc(100vh - 240px);
+      height: calc(100vh - 254px);
     }
   }
 
