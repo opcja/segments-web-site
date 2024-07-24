@@ -14,6 +14,11 @@ const PageWrapper = styled.div`
     max-height: 100vh;
     overflow-y: hidden;
   }
+
+  @media (min-width: 1024px) {
+    padding: 24px;
+    height: 100vh;
+  }
 `;
 
 const ListSections = styled.ul`
@@ -21,6 +26,10 @@ const ListSections = styled.ul`
   flex-direction: column;
   gap: 11px;
   list-style: none;
+
+  @media (min-width: 1024px) {
+    gap: 24px;
+  }
 
   li {
     height: 62px;
@@ -69,6 +78,7 @@ const ListSections = styled.ul`
         position: absolute;
         right: 0;
         margin-top: 2px;
+        transition: background-color .6s ease-in-out;
       }
 
       .big-title {
@@ -190,13 +200,190 @@ const ListSections = styled.ul`
       height: calc(100vh - 240px);
     }
   }
-`;
+
+  @media (min-width: 1024px) {
+    flex-direction: row;
+    height: 100%;
+
+    li {
+      height: 100%;
+      width: 180px;
+      transition: width .6s ease-in-out, background-color .4s ease-in-out;
+
+      .content-box {
+        padding: 40px;
+        height: 100%;
+        width: calc(100vw - 660px);
+
+        .section-title .big-title {
+         display: none;
+        }
+
+         .section-title .small-title {
+          font-size: ${({ theme }) => theme.font.heading.desktop.h2};
+          font-weight: 700;
+          top: 160px;
+          transition: all .5s ease-in-out, left .6s ease-in-out;
+        }
+
+        .section-title .small-title::after {
+          right: auto;
+          left: 0;
+          width: 21px;
+          margin-top: 4px;
+          transition: width .4s ease-in-out, background-color .4s ease-in-out;
+        }
+
+        .description {
+          margin-left: 40px;
+          margin-top: 184px;
+          opacity: 0;
+          font-size: ${({ theme }) => theme.font.body.regular};
+          transition: opacity .6s ease-in-out;
+        }
+
+        .contact-data-box {
+          opacity: 0;
+          transition: opacity .6s ease-in-out;
+          margin-left: 40px;
+
+          span {
+            font-size: ${({ theme }) => theme.font.body.regular};
+          }
+        }
+
+        .second-description {
+          margin-top: 24px;
+        }
+      }
+
+      .logo-and-title-box svg, .brand-rectangle-icon-box svg {
+        width: 40px !important;
+        height: 40px !important;
+      }
+
+      .bcg-photo-box {
+        left: -180px;
+        right: 360px;
+        transition: left .6s ease-in-out, right .6s ease-in-out, transform .6s ease-in-out;
+      }
+    }
+
+    li:hover {
+      background-color: ${({theme}) => theme.colors.background.primary};
+
+      .section-title .small-title::after {
+        width: 100%;
+        background-color: ${({theme}) => theme.colors.background.brandred};
+      }
+      .bcg-photo-box {
+        transform: scale(1.2);
+      }
+    }
+
+    li.active {
+      flex-grow: 1;
+      height: 100%;
+      width: calc(100vw - 660px);
+
+      .section-title .small-title {
+        transform: scale(1.2);
+        opacity: 100%;
+      }
+
+      .section-title .small-title::after {
+        background-color: ${({theme}) => theme.colors.background.secondary};
+      }
+
+      .description, .contact-data-box  {
+          opacity: 100;
+      }
+
+      .bcg-photo-box {
+        left: 0;
+        right: 0;
+      }
+    }
+
+    li.about-section .description {
+      margin-top: 144px;
+    }
+
+    li.about-section .section-title .small-title { 
+      left: 48px;
+    }
+
+    li.services-section .section-title .small-title { 
+      left: 40px;
+    }
+
+    li.realizations-section .section-title .small-title { 
+      left: 15px;
+    }
+
+    li.contact-section .section-title .small-title { 
+      left: 30px;
+    }
+
+    li.services-section.active .section-title .small-title, li.about-section.active .section-title .small-title, li.contact-section.active .section-title .small-title { 
+      left: 90px;
+    }
+
+    li.realizations-section.active .section-title .small-title {
+      left: 95px;
+    }
+
+    li.about-section .description {
+      max-width: 470px;
+    }
+
+    li.services-section .description {
+      max-width: 480px;
+    }
+
+    li.realizations-section .description {
+      max-width: 460px;
+    }
+
+    li.active:hover {
+      .section-title .small-title::after {
+        width: 21px;
+      }
+    }
+  }
+
+  @media (min-width: 1200px) {
+    li {
+      width: 212px;
+
+      .content-box {
+        width: calc(100vw - 706px);;
+      }
+    }
+
+    li.about-section .section-title .small-title { 
+      left: 58px;
+    }
+
+    li.services-section .section-title .small-title { 
+      left: 51px;
+    }
+
+    li.realizations-section .section-title .small-title { 
+      left: 23px;
+    }
+
+    li.contact-section .section-title .small-title { 
+      left: 39px;
+    }
+  }
+  `;
 
 const IndexPage = () => {
+
   React.useEffect(() => {
     document.body.style.backgroundColor = "#000";
   },[]);
-  
 
   React.useEffect(() => {
     const listItems = document.querySelectorAll(".list-item");
@@ -238,7 +425,7 @@ const IndexPage = () => {
                   <BrandRectangleIcon />
                 </div>
                 <div className="bcg-photo-box">
-                  <StaticImage src="../assets/images/about-bcg-mobile.webp"></StaticImage>
+                  <StaticImage src="../assets/images/about-bcg-mobile.webp" loading="eager"></StaticImage>
                 </div>
               </div>    
             </li>
@@ -255,25 +442,26 @@ const IndexPage = () => {
                   SEGMENTS to butikowy dostawca usług przemysłowych. Oferujemy budowę linii produkcyjnych, spawalnictwo, utrzymanie ruchu, kontrolę jakości, naprawy maszyn, wsparcie logistyczne i produkcyjne. Zaufaj naszym specjalistom w zapewnieniu najwyższej jakości usług.
                 </p>
                 <div className="bcg-photo-box">
-                  <StaticImage src="../assets/images/services-bcg-mobile.webp"></StaticImage>
+                  <StaticImage src="../assets/images/services-bcg-mobile.webp" loading="eager"></StaticImage>
                 </div>
               </div>
             </li>
-            <li className="list-item ralizations-section">
+            <li className="list-item realizations-section">
               <div className="content-box">
                 <h1 className="section-title">
                   <span className="big-title">Realizacje</span>
                   <span className="small-title">Realizacje</span>
                 </h1>
                 <p className="description">
-                  Oferujemy kompleksowe usługi budowlane, które obejmują każdy etap realizacji projektu. Od starannego planowania i projektowania, przez profesjonalną budowę, aż po zarządzanie projektem – zapewniamy pełne wsparcie na każdym kroku. <br /><br />
-                  Dzięki naszym doświadczeniu i zaangażowaniu, jesteśmy w stanie sprostać nawet najbardziej wymagającym wyzwaniom, dostarczając rozwiązania, które łączą funkcjonalność, estetykę i trwałość.
+                  Jesteśmy dumni z naszych licznych realizacji, które obejmują zarówno nowoczesne apartamenty, przestrzenie komercyjne, jak i projekty infrastrukturalne. Każdy z naszych projektów to świadectwo naszego zaangażowania w najwyższą jakość i innowacyjne podejście do budownictwa. 
+                  <br /><br />
+                  Zapraszamy do zapoznania się z naszym portfolio, które prezentuje naszą wszechstronność i zdolność do tworzenia przestrzeni, które inspirują i służą społeczności przez wiele lat.
                 </p>
                 <div className="brand-rectangle-icon-box">
                   <BrandRectangleIcon />
                 </div>
                 <div className="bcg-photo-box">
-                  <StaticImage src="../assets/images/realizations-bcg-mobile.webp"></StaticImage>
+                  <StaticImage src="../assets/images/realizations-bcg-mobile.webp" loading="eager"></StaticImage>
                 </div>
               </div>
             </li>
