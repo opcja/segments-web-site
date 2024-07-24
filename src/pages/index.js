@@ -372,7 +372,7 @@ const ListSections = styled.ul`
 const IndexPage = () => {
 
   React.useEffect(() => {
-    document.body.style.backgroundColor = "#000";
+    document.body.style.backgroundColor = "#050";
   },[]);
 
   React.useEffect(() => {
