@@ -12,7 +12,7 @@ const PageWrapper = styled.div`
   display: flex;
 
   @media (max-width: 768px) and (min-height: 760px) {
-    max-height: 100dvh;
+    max-height: 100svh;
     overflow-y: hidden;
   }
 
