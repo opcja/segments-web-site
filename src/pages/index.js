@@ -172,7 +172,7 @@ const ListSections = styled.ul`
 
   li.active {
     height: 511px;
-    background-color: ${({ theme }) => theme.colors.background.primary};
+    background-color: red;
 
     .section-title .big-title {
       opacity: 100;
