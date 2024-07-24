@@ -12,7 +12,7 @@ const PageWrapper = styled.div`
   display: flex;
 
   @media (max-width: 768px) and (min-height: 760px) {
-    height: 50svh;
+    max-height: 50svh;
     overflow-y: hidden;
   }
 
@@ -372,7 +372,7 @@ const ListSections = styled.ul`
 const IndexPage = () => {
 
   React.useEffect(() => {
-    document.body.style.backgroundColor = "#050";
+    document.body.style.backgroundColor = "#000";
   },[]);
 
   React.useEffect(() => {
