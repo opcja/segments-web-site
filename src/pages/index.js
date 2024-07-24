@@ -11,7 +11,8 @@ const PageWrapper = styled.div`
   background-color: #000;
 
   @media (max-width: 768px) and (min-height: 760px) {
-    max-height: 100vh;
+    position: fixed;
+    max-height: 100%;
     overflow-y: hidden;
   }
 
@@ -144,26 +145,12 @@ const ListSections = styled.ul`
     .description {
       margin-top: 32px;
     }
-
-    .brand-rectangle-icon-box {
-      flex-grow: 1;
-      display: flex;
-      justify-content: end;
-      align-items: end;
-    }
   }
 
   li.ralizations-section,  li.contact-section {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
-    .brand-rectangle-icon-box { 
-      flex-grow: 1;
-      display: flex;
-      justify-content: end;
-      align-items: end;
-    }
   }
 
   li.contact-section .contact-data-box {
