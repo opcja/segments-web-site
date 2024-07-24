@@ -104,7 +104,10 @@ const ListSections = styled.ul`
     }
 
     .brand-rectangle-icon-box {
-      text-align: end;
+      display: flex;
+      flex-grow: 1;
+      justify-content: end;
+      align-items: end;
       opacity: 0;
       transition: opacity .3s ease-in-out;
       z-index: 999;
