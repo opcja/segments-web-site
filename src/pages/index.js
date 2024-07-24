@@ -376,6 +376,10 @@ const IndexPage = () => {
   },[]);
 
   React.useEffect(() => {
+    document.querySelector(".page-wrapper").style.height = `${window.innerHeight}px`;
+  },[]);
+
+  React.useEffect(() => {
     const listItems = document.querySelectorAll(".list-item");
     
     listItems.forEach((item) => {
@@ -392,7 +396,7 @@ const IndexPage = () => {
     <>
       {" "}
       <MainTemplate>
-        <PageWrapper>
+        <PageWrapper className="page-wrapper">
           <ListSections>
             <li className="list-item about-section active">
               <div className="content-box">
