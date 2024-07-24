@@ -12,7 +12,7 @@ const PageWrapper = styled.div`
   display: flex;
 
   @media (max-width: 768px) and (min-height: 760px) {
-    max-height: 50svh;
+    max-height: 100svh;
     overflow-y: hidden;
   }
 
@@ -136,7 +136,7 @@ const ListSections = styled.ul`
 
     @media (max-width: 768px) and (min-height: 760px) {
       .content-box {
-        min-height: calc(100dvh - 254px);
+        min-height: calc(100svh - 254px);
       }
     }
   }
@@ -172,7 +172,7 @@ const ListSections = styled.ul`
 
   li.active {
     height: 511px;
-    background-color: red;
+    background-color: ${({ theme }) => theme.colors.background.primary};
 
     .section-title .big-title {
       opacity: 100;
@@ -187,7 +187,7 @@ const ListSections = styled.ul`
     }
 
     @media (max-width: 768px) and (min-height: 760px) { 
-      height: calc(100dvh - 254px);
+      height: calc(100svh - 254px);
     }
   }
 
@@ -407,7 +407,7 @@ const IndexPage = () => {
                   </h1>
                 </div>
                 <p className="description">
-                  <b>Cos tu działa? SEGMENTS</b> to firma stworzona z pasji do budownictwa, kreowania wyjątkowych przestrzeni oraz dostarczania wysokiej jakości usług dla przemysłu. Nasz zespół liczy 50 zdolnych i wyjątkowych osób, które nie znają rzeczy niemożliwych i dążą do doskonałości. W SEGMENTS zespół składa się z 30 specjalistów przemysłowych oraz 20 ekspertów w dziedzinie budownictwa.<br /><br />
+                  <b>SEGMENTS</b> to firma stworzona z pasji do budownictwa, kreowania wyjątkowych przestrzeni oraz dostarczania wysokiej jakości usług dla przemysłu. Nasz zespół liczy 50 zdolnych i wyjątkowych osób, które nie znają rzeczy niemożliwych i dążą do doskonałości. W SEGMENTS zespół składa się z 30 specjalistów przemysłowych oraz 20 ekspertów w dziedzinie budownictwa.<br /><br />
                   <b>Nasza filozofia</b><br /><br />
                   Wierzymy, że połączenie pasji z profesjonalizmem jest kluczem do osiągnięcia najwyższej jakości usług. Nasza firma kładzie nacisk na innowacyjność, precyzję i ciągłe dążenie do doskonałości. Niezależnie od projektu, nasz zespół podejmuje się wyzwań z determinacją i zaangażowaniem.
                 </p>
