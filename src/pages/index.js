@@ -9,6 +9,7 @@ import BrandRectangleIcon from "../assets/icons/brandRectangleIcon";
 const PageWrapper = styled.div`
   padding: 11px 8px 24px;
   background-color: #000;
+  display: flex;
 
   @media (max-width: 768px) and (min-height: 760px) {
     position: fixed;
