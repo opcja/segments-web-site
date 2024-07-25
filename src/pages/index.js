@@ -33,7 +33,6 @@ const ListSections = styled.ul`
   }
 
   li {
-    flex-shrink: 0;
     height: 62px;
     position: relative;
     background-color: ${({ theme }) => theme.colors.background.secondary};
