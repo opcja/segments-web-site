@@ -382,15 +382,12 @@ const IndexPage = () => {
       item.style.height = `${window.innerHeight - 254}px`;
     });  
 
-    
     document.querySelectorAll(".list-item").forEach((item) => {
       item.addEventListener('click', (e) => {
         item.style.height = `62px`;
         e.target.style.height = `${window.innerHeight - 254}px`;
       });
-    })
-
-    })
+    });
   },[]);
 
   React.useEffect(() => {
