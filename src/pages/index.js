@@ -377,7 +377,9 @@ const IndexPage = () => {
 
   React.useEffect(() => {
     document.querySelector(".page-wrapper").style.height = `${window.innerHeight}px`;
-    document.querySelector(".content-box").style.height = `${window.innerHeight - 254}px`;
+    document.querySelectorAll(".content-box").forEach((item) => {
+      item.style.height = `${window.innerHeight - 254}px`;
+    });    
   },[]);
 
   React.useEffect(() => {
