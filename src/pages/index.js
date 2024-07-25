@@ -33,7 +33,7 @@ const ListSections = styled.ul`
   }
 
   li {
-    height: 62px;
+    height: 60px;
     position: relative;
     background-color: ${({ theme }) => theme.colors.background.secondary};
     overflow-y: hidden;
