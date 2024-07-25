@@ -41,7 +41,7 @@ const ListSections = styled.ul`
     transition: height .5s ease-in-out, background-color .5s ease-in-out;
 
     .content-box {
-      min-height: 511px;
+      //min-height: 511px;
       padding: 16px;
       display: flex;
       flex-direction: column;
@@ -136,7 +136,7 @@ const ListSections = styled.ul`
 
     @media (max-width: 768px) and (min-height: 760px) {
       .content-box {
-        min-height: calc(100svh - 254px);
+        //min-height: calc(100svh - 254px);
       }
     }
   }
