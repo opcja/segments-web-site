@@ -40,6 +40,7 @@ const ListSections = styled.ul`
     overflow-y: hidden;
     border-radius: 16px;
     transition: height .5s ease-in-out, background-color .5s ease-in-out;
+    z-index: 999;
 
     .content-box {
       //min-height: 511px;
@@ -377,28 +378,21 @@ const IndexPage = () => {
   },[]);
 
   React.useEffect(() => {
+    const listItems = document.querySelectorAll(".list-item");
+
     document.querySelector(".page-wrapper").style.height = `${window.innerHeight}px`;
     document.querySelectorAll(".content-box").forEach((item) => {
       item.style.height = `${window.innerHeight - 254}px`;
-    });  
-
-    document.querySelectorAll(".list-item").forEach((item) => {
-      item.addEventListener('click', (e) => {
-        item.style.height = `62px`;
-        e.target.style.height = `${window.innerHeight - 254}px`;
-      });
     });
-  },[]);
-
-  React.useEffect(() => {
-    const listItems = document.querySelectorAll(".list-item");
     
     listItems.forEach((item) => {
       item.addEventListener('click', () => {        
         listItems.forEach((item) => {
           item.classList.remove('active');
+          item.style.height = `62px`;
         });
         item.classList.add('active');
+        item.style.height = `${window.innerHeight - 254}px`;
       });
     });
   },[]);  
