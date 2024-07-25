@@ -33,7 +33,7 @@ const ListSections = styled.ul`
   }
 
   li {
-    height: 60px;
+    height: 58px;
     position: relative;
     background-color: ${({ theme }) => theme.colors.background.secondary};
     overflow-y: hidden;
@@ -42,7 +42,6 @@ const ListSections = styled.ul`
     z-index: 999;
 
     .content-box {
-      min-height: 100%;
       padding: 16px;
       display: flex;
       flex-direction: column;
@@ -181,6 +180,10 @@ const ListSections = styled.ul`
 
     .section-title .small-title {
       opacity: 0;
+    }
+
+    .content-box {
+      min-height: 100%;
     }
 
     .brand-rectangle-icon-box {
@@ -389,7 +392,7 @@ const IndexPage = () => {
       item.addEventListener('click', () => {        
         listItems.forEach((item) => {
           item.classList.remove('active');
-          item.style.height = `62px`;
+          item.style.height = `58px`;
         });
         item.classList.add('active');
         item.style.height = `${window.innerHeight - 254}px`;
