@@ -42,7 +42,7 @@ const ListSections = styled.ul`
     z-index: 999;
 
     .content-box {
-      //min-height: 511px;
+      min-height: 100%;
       padding: 16px;
       display: flex;
       flex-direction: column;
@@ -172,7 +172,7 @@ const ListSections = styled.ul`
   }
 
   li.active {
-    height: 511px;
+    flex-grow: 1;
     background-color: ${({ theme }) => theme.colors.background.primary};
 
     .section-title .big-title {
