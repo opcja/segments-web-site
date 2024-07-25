@@ -182,16 +182,12 @@ const ListSections = styled.ul`
       opacity: 0;
     }
 
-    .content-box {
-      min-height: 100%;
-    }
-
     .brand-rectangle-icon-box {
       opacity: 100;
     }
 
     @media (max-width: 768px) and (min-height: 760px) { 
-      height: calc(100svh - 254px);
+      //height: calc(100svh - 254px);
     }
   }
 
@@ -384,9 +380,9 @@ const IndexPage = () => {
 
     document.querySelector(".page-wrapper").style.height = `${window.innerHeight}px`;
     document.querySelectorAll(".content-box").forEach((item) => {
-      item.style.height = `${window.innerHeight - 254}px`;
+      item.style.height = `${window.innerHeight - 242}px`;
     });
-    document.querySelector(".list-item.active").style.height = `${window.innerHeight -254}px`;
+    document.querySelector(".list-item.active").style.height = `${window.innerHeight - 242}px`;
     
     listItems.forEach((item) => {
       item.addEventListener('click', () => {        
@@ -395,7 +391,7 @@ const IndexPage = () => {
           item.style.height = `58px`;
         });
         item.classList.add('active');
-        item.style.height = `${window.innerHeight - 254}px`;
+        item.style.height = `${window.innerHeight - 242}px`;
       });
     });
   },[]);  
