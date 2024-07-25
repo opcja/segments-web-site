@@ -380,7 +380,8 @@ const IndexPage = () => {
     document.querySelector(".page-wrapper").style.height = `${window.innerHeight}px`;
     document.querySelectorAll(".content-box").forEach((item) => {
       item.style.height = `${window.innerHeight - 254}px`;
-    });    
+    });  
+    document.querySelector(".list-item.active").style.height = `${window.innerHeight -254}px`;  
   },[]);
 
   React.useEffect(() => {
