@@ -384,6 +384,7 @@ const IndexPage = () => {
     document.querySelectorAll(".content-box").forEach((item) => {
       item.style.height = `${window.innerHeight - 254}px`;
     });
+    document.querySelector(".list-item.active").style.height = `${window.innerHeight -254}px`;
     
     listItems.forEach((item) => {
       item.addEventListener('click', () => {        
