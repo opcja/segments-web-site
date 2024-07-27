@@ -42,6 +42,7 @@ const ListSections = styled.ul`
     z-index: 999;
 
     .content-box {
+      height: 511px;
       padding: 16px;
       display: flex;
       flex-direction: column;
@@ -171,6 +172,7 @@ const ListSections = styled.ul`
   }
 
   li.active {
+    height: 511px;
     flex-grow: 1;
     background-color: ${({ theme }) => theme.colors.background.primary};
 
@@ -184,10 +186,6 @@ const ListSections = styled.ul`
 
     .brand-rectangle-icon-box {
       opacity: 100;
-    }
-
-    @media (max-width: 768px) and (min-height: 760px) { 
-      //height: calc(100svh - 254px);
     }
   }
 
@@ -378,20 +376,22 @@ const IndexPage = () => {
   React.useEffect(() => {
     const listItems = document.querySelectorAll(".list-item");
 
-    document.querySelector(".page-wrapper").style.height = `${window.innerHeight}px`;
-    document.querySelectorAll(".content-box").forEach((item) => {
-      item.style.height = `${window.innerHeight - 242}px`;
-    });
-    document.querySelector(".list-item.active").style.height = `${window.innerHeight - 242}px`;
+    if (window.innerWidth < 768 && window.innerHeight > 760) {
+      document.querySelector(".page-wrapper").style.height = `${window.innerHeight}px`;
+      document.querySelectorAll(".content-box").forEach((item) => {
+        item.style.height = `${window.innerHeight - 242}px`;
+      });
+      document.querySelector(".list-item.active").style.height = `${window.innerHeight - 242}px`;
+    }
     
     listItems.forEach((item) => {
       item.addEventListener('click', () => {        
         listItems.forEach((item) => {
           item.classList.remove('active');
-          item.style.height = `58px`;
+          if (window.innerWidth < 768 && window.innerHeight > 760) item.style.height = `58px`;
         });
         item.classList.add('active');
-        item.style.height = `${window.innerHeight - 242}px`;
+        if (window.innerWidth < 768 && window.innerHeight > 760) item.style.height = `${window.innerHeight - 242}px`;
       });
     });
   },[]);  
