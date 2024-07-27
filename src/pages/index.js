@@ -142,12 +142,6 @@ const ListSections = styled.ul`
     }
   }
 
-  li.ralizations-section,  li.contact-section {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
   li.contact-section .contact-data-box {
     display: flex;
     flex-direction: column;
@@ -373,9 +367,9 @@ const IndexPage = () => {
     if (window.innerWidth < 768 && window.innerHeight > 760) {
       document.querySelector(".page-wrapper").style.height = `${window.innerHeight}px`;
       document.querySelectorAll(".content-box").forEach((item) => {
-        item.style.height = `${window.innerHeight - 250}px`;
+        item.style.height = `${window.innerHeight - 242}px`;
       });
-      document.querySelector(".list-item.active").style.height = `${window.innerHeight - 250}px`;
+      document.querySelector(".list-item.active").style.height = `${window.innerHeight - 242}px`;
     }
     
     listItems.forEach((item) => {
@@ -385,7 +379,7 @@ const IndexPage = () => {
           if (window.innerWidth < 768 && window.innerHeight > 760) item.style.height = `58px`;
         });
         item.classList.add('active');
-        if (window.innerWidth < 768 && window.innerHeight > 760) item.style.height = `${window.innerHeight - 250}px`;
+        if (window.innerWidth < 768 && window.innerHeight > 760) item.style.height = `${window.innerHeight - 242}px`;
       });
     });
   },[]);  
