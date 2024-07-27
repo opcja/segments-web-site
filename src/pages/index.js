@@ -134,12 +134,6 @@ const ListSections = styled.ul`
         }
       }
     }
-
-    @media (max-width: 768px) and (min-height: 760px) {
-      .content-box {
-        //min-height: calc(100svh - 254px);
-      }
-    }
   }
 
   li.about-section {
@@ -379,7 +373,7 @@ const IndexPage = () => {
     if (window.innerWidth < 768 && window.innerHeight > 760) {
       document.querySelector(".page-wrapper").style.height = `${window.innerHeight}px`;
       document.querySelectorAll(".content-box").forEach((item) => {
-        item.style.height = `${window.innerHeight - 242}px`;
+        item.style.minHeight = `${window.innerHeight - 242}px`;
       });
       document.querySelector(".list-item.active").style.height = `${window.innerHeight - 242}px`;
     }
