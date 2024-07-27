@@ -373,7 +373,7 @@ const IndexPage = () => {
     if (window.innerWidth < 768 && window.innerHeight > 760) {
       document.querySelector(".page-wrapper").style.height = `${window.innerHeight}px`;
       document.querySelectorAll(".content-box").forEach((item) => {
-        item.style.minHeight = `${window.innerHeight - 242}px`;
+        item.style.height = `${window.innerHeight - 242}px`;
       });
       document.querySelector(".list-item.active").style.height = `${window.innerHeight - 242}px`;
     }
