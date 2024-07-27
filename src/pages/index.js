@@ -364,24 +364,24 @@ const IndexPage = () => {
   React.useEffect(() => {
     const listItems = document.querySelectorAll(".list-item");
 
-    console.log(window.innerWidth, window.innerHeight);
+    console.log(window.screen.width, window.innerHeight);
 
-    
+    if (window.screen.width < 768 && window.screen.height > 760) {
       document.querySelector(".page-wrapper").style.height = `${window.innerHeight}px`;
       document.querySelectorAll(".content-box").forEach((item) => {
         item.style.height = `${window.innerHeight - 242}px`;
       });
       document.querySelector(".list-item.active").style.height = `${window.innerHeight - 242}px`;
-    
+    }
     
     listItems.forEach((item) => {
       item.addEventListener('click', () => {        
         listItems.forEach((item) => {
           item.classList.remove('active');
-          item.style.height = `58px`;
+          if (window.screen.width < 768 && window.screen.height > 760) item.style.height = `58px`;
         });
         item.classList.add('active');
-        item.style.height = `${window.innerHeight - 242}px`;
+        if (window.screen.width < 768 && window.screen.height > 760) item.style.height = `${window.innerHeight - 242}px`;
       });
     });
   },[]);  
