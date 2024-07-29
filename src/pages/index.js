@@ -5,11 +5,18 @@ import { StaticImage } from "gatsby-plugin-image"
 
 import LogoIcon from "../assets/icons/LogoIcon";
 import BrandRectangleIcon from "../assets/icons/brandRectangleIcon";
+import introVideo from "../assets/videos/logo_dark.mp4";
 
 const PageWrapper = styled.div`
   padding: 11px 8px 24px;
   background-color: #000;
   display: flex;
+  opacity: 0;
+  transition: opacity .6s ease-in-out;
+
+  &.show {
+    opacity: 100%;
+  }
 
   @media (max-width: 768px) and (min-height: 760px) {
     max-height: 100svh;
@@ -120,7 +127,7 @@ const ListSections = styled.ul`
       }
     }
 
-    .bcg-photo-box {
+    .bcg-mobile-photo-box {
       position: absolute;
       bottom: 0;
       left: 0;
@@ -133,6 +140,10 @@ const ListSections = styled.ul`
           max-width: none !important;
         }
       }
+    }
+
+    .bcg-desktop-photo-box {
+      display: none;
     }
   }
 
@@ -177,9 +188,12 @@ const ListSections = styled.ul`
     }
   }
 
+
+
   @media (min-width: 1024px) {
     flex-direction: row;
     height: 100%;
+    width: 100%;
 
     li {
       height: 100%;
@@ -238,10 +252,15 @@ const ListSections = styled.ul`
         height: 40px !important;
       }
 
-      .bcg-photo-box {
-        left: -180px;
-        right: 360px;
-        transition: left .6s ease-in-out, right .6s ease-in-out, transform .6s ease-in-out;
+      .bcg-mobile-photo-box {
+        display: none;
+      }
+
+      .bcg-desktop-photo-box {
+        display: block;
+        position: absolute;
+        right: 0;
+        bottom: 0;
       }
     }
 
@@ -251,9 +270,6 @@ const ListSections = styled.ul`
       .section-title .small-title::after {
         width: 100%;
         background-color: ${({theme}) => theme.colors.background.brandred};
-      }
-      .bcg-photo-box {
-        transform: scale(1.2);
       }
     }
 
@@ -273,11 +289,6 @@ const ListSections = styled.ul`
 
       .description, .contact-data-box  {
           opacity: 100;
-      }
-
-      .bcg-photo-box {
-        left: 0;
-        right: 0;
       }
     }
 
@@ -353,7 +364,34 @@ const ListSections = styled.ul`
       left: 39px;
     }
   }
-  `;
+`;
+
+const IntroWrapper = styled.div`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #212028;
+  display: grid;
+  align-content: center;
+  transition: opacity .4s ease-in-out;
+
+  &.hidden {
+    opacity: 0;
+
+    .intro-video {
+      display: none;
+    }
+  }
+
+  .intro-video {
+    width: 40%;
+    height: 100%;
+    margin: 0 auto;
+  }
+
+`
 
 const IndexPage = () => {
 
@@ -363,8 +401,6 @@ const IndexPage = () => {
 
   React.useEffect(() => {
     const listItems = document.querySelectorAll(".list-item");
-
-    console.log(window.screen.width, window.innerHeight);
 
     if (window.screen.width < 768 && window.screen.height > 760) {
       document.querySelector(".page-wrapper").style.height = `${window.innerHeight}px`;
@@ -385,6 +421,21 @@ const IndexPage = () => {
       });
     });
   },[]);  
+
+  React.useEffect(() => {
+    const introVideo = document.querySelector('.intro-video');
+    const introWrapper = document.querySelector('.intro-wrapper');
+    const pageWrapper = document.querySelector('.page-wrapper');
+
+    window.addEventListener("load", () => {
+      introVideo.play();
+    });
+
+    introVideo.addEventListener("ended", () => {
+      introWrapper.classList.add("hidden");
+      pageWrapper.classList.add("show");
+    });
+  },[]);
 
   return (
     <>
@@ -412,10 +463,13 @@ const IndexPage = () => {
                 <div className="brand-rectangle-icon-box">
                   <BrandRectangleIcon />
                 </div>
-                <div className="bcg-photo-box">
+                <div className="bcg-mobile-photo-box">
                   <StaticImage src="../assets/images/about-bcg-mobile.webp" loading="eager"></StaticImage>
                 </div>
-              </div>    
+              </div>   
+              <div className="bcg-desktop-photo-box">
+                <StaticImage src="../assets/images/about-bcg-desktop.webp" loading="eager"></StaticImage>
+              </div> 
             </li>
             <li className="list-item services-section">
               <div className="content-box">        
@@ -429,10 +483,13 @@ const IndexPage = () => {
                   <b style={{fontSize: "16px"}}>Przemysł</b> <br /><br />
                   SEGMENTS to butikowy dostawca usług przemysłowych. Oferujemy budowę linii produkcyjnych, spawalnictwo, utrzymanie ruchu, kontrolę jakości, naprawy maszyn, wsparcie logistyczne i produkcyjne. Zaufaj naszym specjalistom w zapewnieniu najwyższej jakości usług.
                 </p>
-                <div className="bcg-photo-box">
+                <div className="bcg-mobile-photo-box">
                   <StaticImage src="../assets/images/services-bcg-mobile.webp" loading="eager"></StaticImage>
                 </div>
               </div>
+              <div className="bcg-desktop-photo-box">
+                <StaticImage src="../assets/images/services-bcg-desktop.webp" loading="eager"></StaticImage>
+              </div> 
             </li>
             <li className="list-item realizations-section">
               <div className="content-box">
@@ -448,10 +505,13 @@ const IndexPage = () => {
                 <div className="brand-rectangle-icon-box">
                   <BrandRectangleIcon />
                 </div>
-                <div className="bcg-photo-box">
+                <div className="bcg-mobile-photo-box">
                   <StaticImage src="../assets/images/realizations-bcg-mobile.webp" loading="eager"></StaticImage>
                 </div>
               </div>
+              <div className="bcg-desktop-photo-box">
+                <StaticImage src="../assets/images/realizations-bcg-desktop.webp" loading="eager"></StaticImage>
+              </div> 
             </li>
             <li className="list-item contact-section">
               <div className="content-box">
@@ -485,9 +545,17 @@ const IndexPage = () => {
                   <BrandRectangleIcon />
                 </div>
               </div>
+              <div className="bcg-desktop-photo-box">
+                <StaticImage src="../assets/images/contact-bcg-desktop.webp" loading="eager"></StaticImage>
+              </div> 
             </li>
           </ListSections>
         </PageWrapper>
+        <IntroWrapper className="intro-wrapper">
+          <video muted className="intro-video">
+            <source src={introVideo} type="video/mp4" />
+          </video>
+        </IntroWrapper>
       </MainTemplate>
     </>
   );
