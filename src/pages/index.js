@@ -422,7 +422,7 @@ const IndexPage = () => {
     });
   },[]);  
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     const introVideo = document.querySelector('.intro-video');
     const introWrapper = document.querySelector('.intro-wrapper');
     const pageWrapper = document.querySelector('.page-wrapper');
