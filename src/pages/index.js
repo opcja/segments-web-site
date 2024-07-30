@@ -427,10 +427,16 @@ const IndexPage = () => {
     const introWrapper = document.querySelector('.intro-wrapper');
     const pageWrapper = document.querySelector('.page-wrapper');
 
-    window.addEventListener("load", () => {
+    if(document.readyState === 'complete') {
       introVideo.play();
-      console.log('load');
+      console.log('complete');
+    } else {
+       window.addEventListener("load", () => {
+       introVideo.play();
+       console.log('load');
     });
+    }
+   
 
     introVideo.addEventListener("ended", () => {
       introWrapper.classList.add("hidden");
