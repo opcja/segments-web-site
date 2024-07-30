@@ -429,6 +429,7 @@ const IndexPage = () => {
 
     window.addEventListener("load", () => {
       introVideo.play();
+      console.log('load');
     });
 
     introVideo.addEventListener("ended", () => {
