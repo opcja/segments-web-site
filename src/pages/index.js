@@ -376,6 +376,7 @@ const IntroWrapper = styled.div`
   display: grid;
   align-content: center;
   transition: opacity .4s ease-in-out;
+  max-height: 100vh;
 
   &.hidden {
     opacity: 0;
@@ -559,7 +560,7 @@ const IndexPage = () => {
           </ListSections>
         </PageWrapper>
         <IntroWrapper className="intro-wrapper">
-          <video muted playsInline controls className="intro-video">
+          <video muted playsInline className="intro-video">
             <source src={introVideo} type="video/mp4" />
           </video>
           <div></div>
