@@ -559,7 +559,7 @@ const IndexPage = () => {
           </ListSections>
         </PageWrapper>
         <IntroWrapper className="intro-wrapper">
-          <video muted className="intro-video" playsinline>
+          <video muted playsinline className="intro-video">
             <source src={introVideo} type="video/mp4" />
           </video>
         </IntroWrapper>
