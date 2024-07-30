@@ -372,7 +372,7 @@ const IntroWrapper = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: #212028;
+  background-color: ${({ theme }) => theme.colors.background.primary};
   display: grid;
   align-content: center;
   transition: opacity .4s ease-in-out;
