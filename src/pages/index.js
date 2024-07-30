@@ -388,7 +388,6 @@ const IntroWrapper = styled.div`
 
   .intro-video {
     width: 40%;
-    height: 100%;
     margin: 0 auto;
   }
 
