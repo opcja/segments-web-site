@@ -5,7 +5,7 @@ import { StaticImage } from "gatsby-plugin-image"
 
 import LogoIcon from "../assets/icons/LogoIcon";
 import BrandRectangleIcon from "../assets/icons/brandRectangleIcon";
-import introVideo from "../assets/videos/logo_dark.mp4";
+import introVideo from "../assets/videos/Logo_BLK_BKG.mp4";
 
 const PageWrapper = styled.div`
   padding: 11px 8px 24px;
@@ -162,7 +162,17 @@ const ListSections = styled.ul`
 
     span {
       font-size: ${({ theme }) => theme.font.body.small};
-      font-weight: 600;
+    }
+
+    .phone-link-box, .email-link-box, .adress-data-box {
+      display: flex;
+      gap: 4px;
+    }
+
+    .phone-link-box a, .email-link-box a, .adress-data-box span {
+      color: ${({ theme }) => theme.colors.text.primary};
+      text-decoration: none;
+      font-size: ${({ theme }) => theme.font.body.small};
     }
   }
 
@@ -199,6 +209,7 @@ const ListSections = styled.ul`
       height: 100%;
       width: 180px;
       transition: width .6s ease-in-out, background-color .4s ease-in-out;
+      cursor: pointer;
 
       .content-box {
         padding: 40px;
@@ -261,6 +272,8 @@ const ListSections = styled.ul`
         position: absolute;
         right: 0;
         bottom: 0;
+        transition: scale .5s ease-in-out, transform .5s ease-in-out;
+        width: calc(100vw - 706px);
       }
     }
 
@@ -270,6 +283,10 @@ const ListSections = styled.ul`
       .section-title .small-title::after {
         width: 100%;
         background-color: ${({theme}) => theme.colors.background.brandred};
+      }
+
+      .bcg-desktop-photo-box {
+        transform: scale(1.2) translateX(-10%);
       }
     }
 
@@ -289,6 +306,10 @@ const ListSections = styled.ul`
 
       .description, .contact-data-box  {
           opacity: 100;
+      }
+
+      .bcg-desktop-photo-box {
+        transform: scale(1.2) translateX(-10%);
       }
     }
 
@@ -336,6 +357,10 @@ const ListSections = styled.ul`
       .section-title .small-title::after {
         width: 21px;
       }
+
+      .bcg-desktop-photo-box {
+        transform: scale(1.2) translateX(-10%);
+      }
     }
   }
 
@@ -372,11 +397,12 @@ const IntroWrapper = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: ${({ theme }) => theme.colors.background.primary};
+  background-color: #000;
   display: grid;
   align-content: center;
   transition: opacity .4s ease-in-out;
   max-height: 100vh;
+  
 
   &.hidden {
     opacity: 0;
@@ -533,11 +559,11 @@ const IndexPage = () => {
                   <div className="contact-data-box">
                     <div className="phone-link-box">
                       <span>Telefon:</span>
-                      <a href="tel:"></a>
+                      <a href="tel:+48603637908"><b>+48 603 637 908</b></a>
                     </div>
-                    <div className="adress-link-box">
+                    <div className="email-link-box">
                       <span>E-mail:</span>
-                      <a href= "mailto: "></a>
+                      <a href= "mailto:j.duraj@segments.pl"><b>j.duraj@segments.pl</b></a>
                     </div>
                     <div className="adress-data-box">
                       <span>Adres:</span>

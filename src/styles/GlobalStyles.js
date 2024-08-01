@@ -7,7 +7,7 @@ export const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;  
   }  
 
-  h1, h2, h3, h4, h5, p, span, label, input, button {
+  h1, h2, h3, h4, h5, p, span, label, input, button, a  {
     font-family: "outfit", "sans-serif";
     -webkit-font-smoothing: antialiased;
   } 
