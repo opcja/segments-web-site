@@ -144,6 +144,14 @@ const ListSections = styled.ul`
 
     .bcg-desktop-photo-box {
       display: none;
+
+      .gatsby-image-wrapper {
+        width: 100%;
+
+        div {
+          max-width: none !important;
+        }
+      }
     }
   }
 
@@ -173,6 +181,10 @@ const ListSections = styled.ul`
       color: ${({ theme }) => theme.colors.text.primary};
       text-decoration: none;
       font-size: ${({ theme }) => theme.font.body.small};
+    }
+
+    .bcg-desktop-photo-box {
+      width: max-content;
     }
   }
 
@@ -273,8 +285,10 @@ const ListSections = styled.ul`
         right: 0;
         bottom: 0;
         transition: scale .5s ease-in-out, transform .5s ease-in-out;
-        width: calc(100vw - 706px);
-      }
+        width: calc(100vw - 660px);
+        transform-origin: bottom right;
+        transform: scale(0.65);
+      } 
     }
 
     li:hover {
@@ -286,7 +300,7 @@ const ListSections = styled.ul`
       }
 
       .bcg-desktop-photo-box {
-        transform: scale(1.2) translateX(-10%);
+        transform: scale(0.8);
       }
     }
 
@@ -309,7 +323,7 @@ const ListSections = styled.ul`
       }
 
       .bcg-desktop-photo-box {
-        transform: scale(1.2) translateX(-10%);
+        transform: scale(1);
       }
     }
 
@@ -346,11 +360,28 @@ const ListSections = styled.ul`
     }
 
     li.services-section .description {
-      max-width: 480px;
+      max-width: 470px;
     }
 
     li.realizations-section .description {
-      max-width: 460px;
+      max-width: 465px;
+    }
+
+    li.about-section .description, li.services-section .description, li.realizations-section .description {
+      padding-bottom: 16px;
+      border-bottom: 1px solid ${({theme}) => theme.colors.background.secondary};;
+    }
+
+    li.contact-section .bcg-desktop-photo-box {
+      transform: scale(0.6) translateX(36%);
+    }
+
+    li.contact-section:hover .bcg-desktop-photo-box {
+      transform: scale(0.65) translateX(36%);
+    }
+
+    li.contact-section.active .bcg-desktop-photo-box, li.contact-section.active:hover .bcg-desktop-photo-box {
+      transform: scale(0.6) translateX(0%);
     }
 
     li.active:hover {
@@ -359,7 +390,7 @@ const ListSections = styled.ul`
       }
 
       .bcg-desktop-photo-box {
-        transform: scale(1.2) translateX(-10%);
+        transform: scale(1);
       }
     }
   }
@@ -368,7 +399,7 @@ const ListSections = styled.ul`
     li {
       width: 212px;
 
-      .content-box {
+      .content-box, .bcg-desktop-photo-box { 
         width: calc(100vw - 706px);;
       }
     }
@@ -417,6 +448,12 @@ const IntroWrapper = styled.div`
     margin: 0 auto;
   }
 
+  @media (min-width: 1024px) {
+  .intro-video {
+    width: 10%;
+  }
+  }
+
 `
 
 const IndexPage = () => {
@@ -448,6 +485,58 @@ const IndexPage = () => {
     });
   },[]);  
 
+  React.useEffect(() => {
+    if(window.screen.width >= 1024) {
+      const contactSection = document.querySelector('li.contact-section');
+      const contactSectionPhoto = document.querySelector('li.contact-section .bcg-desktop-photo-box');
+      const aboutSection = document.querySelector('li.about-section');
+      const servicesSection = document.querySelector('li.services-section');
+      const realizationsSection = document.querySelector('li.realizations-section');
+
+      let contactSectionIsActive = false;
+
+      contactSectionPhoto.style.transform = `scale(0.6) translateX(${(window.innerWidth / 1000) * 26}%)`;
+
+      window.addEventListener("resize", () => {
+        if(!(contactSectionIsActive)) contactSectionPhoto.style.transform = `scale(0.6) translateX(${(window.innerWidth / 1000) * 26}%)`;
+      });
+
+      contactSection.addEventListener("mouseover", () => {
+        if(!(contactSectionIsActive)) contactSectionPhoto.style.transform = `scale(0.65) translateX(${(window.innerWidth / 1000) * 26}%)`;
+      });
+
+      contactSection.addEventListener("mouseleave", () => {
+         if(!(contactSectionIsActive)) contactSectionPhoto.style.transform = `scale(0.6) translateX(${(window.innerWidth / 1000) * 26}%)`;
+      });
+
+      contactSection.addEventListener("click", () => {
+        contactSectionPhoto.style.transform = `scale(0.6) translateX(0)`;
+         if(!(contactSectionIsActive)) contactSectionIsActive = true;
+      });
+
+      aboutSection.addEventListener("click", () => {
+         if(contactSectionIsActive) { 
+          contactSectionPhoto.style.transform = `scale(0.6) translateX(${(window.innerWidth / 1000) * 26}%)`;
+          contactSectionIsActive = false;
+        }
+      });
+
+      servicesSection.addEventListener("click", () => {
+         if(contactSectionIsActive) { 
+          contactSectionPhoto.style.transform = `scale(0.6) translateX(${(window.innerWidth / 1000) * 26}%)`;
+          contactSectionIsActive = false;
+        }
+      });
+
+      realizationsSection.addEventListener("click", () => {
+         if(contactSectionIsActive) { 
+          contactSectionPhoto.style.transform = `scale(0.6) translateX(${(window.innerWidth / 1000) * 26}%)`;
+          contactSectionIsActive = false;
+        }
+      });
+    }
+  });
+
   React.useLayoutEffect(() => {
     const introVideo = document.querySelector('.intro-video');
     const introWrapper = document.querySelector('.intro-wrapper');
@@ -463,7 +552,6 @@ const IndexPage = () => {
     });
     }
    
-
     introVideo.addEventListener("ended", () => {
       introWrapper.classList.add("hidden");
       pageWrapper.classList.add("show");
