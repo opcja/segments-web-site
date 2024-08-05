@@ -2,6 +2,7 @@ import * as React from "react";
 import styled from "styled-components";
 import MainTemplate from "../templates/MainTemplates";
 import { StaticImage } from "gatsby-plugin-image"
+import { Link } from "gatsby";
 
 import LogoIcon from "../assets/icons/LogoIcon";
 import BrandRectangleIcon from "../assets/icons/brandRectangleIcon";
@@ -161,6 +162,16 @@ const ListSections = styled.ul`
     }
   }
 
+  li.services-section .brand-rectangle-icon-box {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+
+    @media (max-width: 768px) and (min-height: 760px) {
+      position: static;
+    }
+  }
+
   li.contact-section .contact-data-box {
     display: flex;
     flex-direction: column;
@@ -188,8 +199,16 @@ const ListSections = styled.ul`
     }
   }
 
-  li.contact-section .second-description {
-    margin-top: 24px;
+  li.contact-section {
+    .second-description {
+      margin-top: 24px;
+    }
+
+    .bcg-mobile-photo-box {
+      width: 60%;
+      left: auto;
+    }
+
   }
 
   li.active {
@@ -569,7 +588,9 @@ const IndexPage = () => {
                 <div className="logo-and-title-box">
                 {" "}
                   <div className="logo-box">
-                    <LogoIcon />
+                    <Link to="/" class="logo-link">
+                      <LogoIcon />
+                    </Link>
                   </div>
                   <h1 className="section-title">
                     <span className="big-title">O nas</span>
@@ -604,6 +625,9 @@ const IndexPage = () => {
                   <b style={{fontSize: "16px"}}>Przemysł</b> <br /><br />
                   SEGMENTS to butikowy dostawca usług przemysłowych. Oferujemy budowę linii produkcyjnych, spawalnictwo, utrzymanie ruchu, kontrolę jakości, naprawy maszyn, wsparcie logistyczne i produkcyjne. Zaufaj naszym specjalistom w zapewnieniu najwyższej jakości usług.
                 </p>
+                <div className="brand-rectangle-icon-box">
+                  <BrandRectangleIcon />
+                </div>
                 <div className="bcg-mobile-photo-box">
                   <StaticImage src="../assets/images/services-bcg-mobile.webp" loading="eager"></StaticImage>
                 </div>
@@ -664,6 +688,9 @@ const IndexPage = () => {
                 </div>
                 <div className="brand-rectangle-icon-box">
                   <BrandRectangleIcon />
+                </div>
+                <div className="bcg-mobile-photo-box">
+                  <StaticImage src="../assets/images/contact-bcg-mobile.webp" loading="eager"></StaticImage>
                 </div>
               </div>
               <div className="bcg-desktop-photo-box">
