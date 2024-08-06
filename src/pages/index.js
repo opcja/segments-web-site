@@ -123,7 +123,8 @@ const ListSections = styled.ul`
         border: 2px solid ${({ theme }) => theme.colors.border.primary};
         color: ${({ theme }) => theme.colors.text.primary};  
         font-weight: 600;
-        text-decoration: auto;
+        text-decoration: none;
+
       }
     }
 
