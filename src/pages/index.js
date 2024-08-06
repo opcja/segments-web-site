@@ -113,6 +113,20 @@ const ListSections = styled.ul`
       letter-spacing: 0.01em;
     }
 
+    .portfolio-link-box {
+      margin-top: 32px;
+
+      .portfolio-link {
+        display: block;
+        text-align: center;
+        padding: 8px 0;
+        border: 2px solid ${({ theme }) => theme.colors.border.primary};
+        color: ${({ theme }) => theme.colors.text.primary};  
+        font-weight: 600;
+        text-decoration: auto;
+      }
+    }
+
     .brand-rectangle-icon-box {
       display: flex;
       flex-grow: 1;
@@ -206,7 +220,7 @@ const ListSections = styled.ul`
 
     .bcg-mobile-photo-box {
       width: 60%;
-      left: auto;
+      left: auto;ć
     }
 
   }
@@ -274,6 +288,19 @@ const ListSections = styled.ul`
           transition: opacity .6s ease-in-out;
         }
 
+        .portfolio-link-box {
+          margin-top: 16px;
+
+          .portfolio-link {
+            padding: 12px 24px;
+            width: fit-content;
+
+            &:hover {
+              background-color: ${({ theme }) => theme.colors.background.secondary};;
+            }
+          }
+        }
+
         .contact-data-box {
           opacity: 0;
           transition: opacity .6s ease-in-out;
@@ -337,7 +364,7 @@ const ListSections = styled.ul`
         background-color: ${({theme}) => theme.colors.background.secondary};
       }
 
-      .description, .contact-data-box  {
+      .description, .contact-data-box, .portfolio-link-box {
           opacity: 100;
       }
 
@@ -391,16 +418,12 @@ const ListSections = styled.ul`
       border-bottom: 1px solid ${({theme}) => theme.colors.background.secondary};;
     }
 
-    li.contact-section .bcg-desktop-photo-box {
-      transform: scale(0.6) translateX(36%);
-    }
-
-    li.contact-section:hover .bcg-desktop-photo-box {
-      transform: scale(0.65) translateX(36%);
+    li.contact-section .bcg-desktop-photo-box, li.contact-section:hover .bcg-desktop-photo-box  {
+      transform: scale(0.45);
     }
 
     li.contact-section.active .bcg-desktop-photo-box, li.contact-section.active:hover .bcg-desktop-photo-box {
-      transform: scale(0.6) translateX(0%);
+      transform: scale(0.5);
     }
 
     li.active:hover {
@@ -504,57 +527,57 @@ const IndexPage = () => {
     });
   },[]);  
 
-  React.useEffect(() => {
-    if(window.screen.width >= 1024) {
-      const contactSection = document.querySelector('li.contact-section');
-      const contactSectionPhoto = document.querySelector('li.contact-section .bcg-desktop-photo-box');
-      const aboutSection = document.querySelector('li.about-section');
-      const servicesSection = document.querySelector('li.services-section');
-      const realizationsSection = document.querySelector('li.realizations-section');
+  // React.useEffect(() => {
+  //   if(window.screen.width >= 1024) {
+  //     const contactSection = document.querySelector('li.contact-section');
+  //     const contactSectionPhoto = document.querySelector('li.contact-section .bcg-desktop-photo-box');
+  //     const aboutSection = document.querySelector('li.about-section');
+  //     const servicesSection = document.querySelector('li.services-section');
+  //     const realizationsSection = document.querySelector('li.realizations-section');
 
-      let contactSectionIsActive = false;
+  //     let contactSectionIsActive = false;
 
-      contactSectionPhoto.style.transform = `scale(0.6) translateX(${(window.innerWidth / 1000) * 26}%)`;
+  //     contactSectionPhoto.style.transform = `scale(0.6) translateX(${(window.innerWidth / 1000) * 26}%)`;
 
-      window.addEventListener("resize", () => {
-        if(!(contactSectionIsActive)) contactSectionPhoto.style.transform = `scale(0.6) translateX(${(window.innerWidth / 1000) * 26}%)`;
-      });
+  //     window.addEventListener("resize", () => {
+  //       if(!(contactSectionIsActive)) contactSectionPhoto.style.transform = `scale(0.6) translateX(${(window.innerWidth / 1000) * 26}%)`;
+  //     });
 
-      contactSection.addEventListener("mouseover", () => {
-        if(!(contactSectionIsActive)) contactSectionPhoto.style.transform = `scale(0.65) translateX(${(window.innerWidth / 1000) * 26}%)`;
-      });
+  //     contactSection.addEventListener("mouseover", () => {
+  //       if(!(contactSectionIsActive)) contactSectionPhoto.style.transform = `scale(0.65) translateX(${(window.innerWidth / 1000) * 26}%)`;
+  //     });
 
-      contactSection.addEventListener("mouseleave", () => {
-         if(!(contactSectionIsActive)) contactSectionPhoto.style.transform = `scale(0.6) translateX(${(window.innerWidth / 1000) * 26}%)`;
-      });
+  //     contactSection.addEventListener("mouseleave", () => {
+  //        if(!(contactSectionIsActive)) contactSectionPhoto.style.transform = `scale(0.6) translateX(${(window.innerWidth / 1000) * 26}%)`;
+  //     });
 
-      contactSection.addEventListener("click", () => {
-        contactSectionPhoto.style.transform = `scale(0.6) translateX(0)`;
-         if(!(contactSectionIsActive)) contactSectionIsActive = true;
-      });
+  //     contactSection.addEventListener("click", () => {
+  //       contactSectionPhoto.style.transform = `scale(0.6) translateX(0)`;
+  //        if(!(contactSectionIsActive)) contactSectionIsActive = true;
+  //     });
 
-      aboutSection.addEventListener("click", () => {
-         if(contactSectionIsActive) { 
-          contactSectionPhoto.style.transform = `scale(0.6) translateX(${(window.innerWidth / 1000) * 26}%)`;
-          contactSectionIsActive = false;
-        }
-      });
+  //     aboutSection.addEventListener("click", () => {
+  //        if(contactSectionIsActive) { 
+  //         contactSectionPhoto.style.transform = `scale(0.6) translateX(${(window.innerWidth / 1000) * 26}%)`;
+  //         contactSectionIsActive = false;
+  //       }
+  //     });
 
-      servicesSection.addEventListener("click", () => {
-         if(contactSectionIsActive) { 
-          contactSectionPhoto.style.transform = `scale(0.6) translateX(${(window.innerWidth / 1000) * 26}%)`;
-          contactSectionIsActive = false;
-        }
-      });
+  //     servicesSection.addEventListener("click", () => {
+  //        if(contactSectionIsActive) { 
+  //         contactSectionPhoto.style.transform = `scale(0.6) translateX(${(window.innerWidth / 1000) * 26}%)`;
+  //         contactSectionIsActive = false;
+  //       }
+  //     });
 
-      realizationsSection.addEventListener("click", () => {
-         if(contactSectionIsActive) { 
-          contactSectionPhoto.style.transform = `scale(0.6) translateX(${(window.innerWidth / 1000) * 26}%)`;
-          contactSectionIsActive = false;
-        }
-      });
-    }
-  });
+  //     realizationsSection.addEventListener("click", () => {
+  //        if(contactSectionIsActive) { 
+  //         contactSectionPhoto.style.transform = `scale(0.6) translateX(${(window.innerWidth / 1000) * 26}%)`;
+  //         contactSectionIsActive = false;
+  //       }
+  //     });
+  //   }
+  // });
 
   React.useLayoutEffect(() => {
     const introVideo = document.querySelector('.intro-video');
@@ -588,9 +611,9 @@ const IndexPage = () => {
                 <div className="logo-and-title-box">
                 {" "}
                   <div className="logo-box">
-                    <Link to="/" class="logo-link">
+                    <a href="/" class="logo-link">
                       <LogoIcon />
-                    </Link>
+                    </a>
                   </div>
                   <h1 className="section-title">
                     <span className="big-title">O nas</span>
@@ -646,6 +669,9 @@ const IndexPage = () => {
                   Jesteśmy dumni z naszych licznych realizacji, które obejmują zarówno nowoczesne apartamenty, przestrzenie komercyjne, jak i projekty infrastrukturalne. Każdy z naszych projektów to świadectwo naszego zaangażowania w najwyższą jakość i innowacyjne podejście do budownictwa. 
                   <br /><br />
                   Zapraszamy do zapoznania się z naszym portfolio, które prezentuje naszą wszechstronność i zdolność do tworzenia przestrzeni, które inspirują i służą społeczności przez wiele lat.
+                  <div className="portfolio-link-box">
+                    <a href="" className="portfolio-link">Pobierz portfolio</a>
+                  </div>
                 </p>
                 <div className="brand-rectangle-icon-box">
                   <BrandRectangleIcon />
