@@ -44,7 +44,7 @@ const ListSections = styled.ul`
     height: 58px;
     position: relative;
     background-color: ${({ theme }) => theme.colors.background.secondary};
-    overflow-y: hidden;
+    overflow: hidden;
     border-radius: 16px;
     transition: height .5s ease-in-out, background-color .5s ease-in-out;
     z-index: 999;
@@ -124,7 +124,6 @@ const ListSections = styled.ul`
         color: ${({ theme }) => theme.colors.text.primary};  
         font-weight: 600;
         text-decoration: none;
-
       }
     }
 
@@ -221,7 +220,7 @@ const ListSections = styled.ul`
 
     .bcg-mobile-photo-box {
       width: 60%;
-      left: auto;ć
+      left: auto;
     }
 
   }
@@ -253,8 +252,9 @@ const ListSections = styled.ul`
 
     li {
       height: 100%;
-      width: 180px;
-      transition: width .6s ease-in-out, background-color .4s ease-in-out;
+      flex-basis: 180px;
+      min-width: 180px;
+      transition: flex-basis .6s ease-in-out, background-color .4s ease-in-out;
       cursor: pointer;
 
       .content-box {
@@ -354,7 +354,7 @@ const ListSections = styled.ul`
     li.active {
       flex-grow: 1;
       height: 100%;
-      width: calc(100vw - 660px);
+      flex-basis: calc(100vw - 660px);
 
       .section-title .small-title {
         transform: scale(1.2);
@@ -396,6 +396,10 @@ const ListSections = styled.ul`
 
     li.services-section.active .section-title .small-title, li.about-section.active .section-title .small-title, li.contact-section.active .section-title .small-title { 
       left: 90px;
+    }
+
+    li.services-section .brand-rectangle-icon-box {
+      position: static;
     }
 
     li.realizations-section.active .section-title .small-title {
@@ -440,11 +444,16 @@ const ListSections = styled.ul`
 
   @media (min-width: 1200px) {
     li {
-      width: 212px;
+      flex-basis: 212px;
+      min-width: 212px;
 
       .content-box, .bcg-desktop-photo-box { 
-        width: calc(100vw - 706px);;
+        width: calc(100vw - 756px);
       }
+    }
+
+    li.active {
+      flex-basis: calc(100vw - 756px);
     }
 
     li.about-section .section-title .small-title { 
@@ -527,58 +536,6 @@ const IndexPage = () => {
       });
     });
   },[]);  
-
-  // React.useEffect(() => {
-  //   if(window.screen.width >= 1024) {
-  //     const contactSection = document.querySelector('li.contact-section');
-  //     const contactSectionPhoto = document.querySelector('li.contact-section .bcg-desktop-photo-box');
-  //     const aboutSection = document.querySelector('li.about-section');
-  //     const servicesSection = document.querySelector('li.services-section');
-  //     const realizationsSection = document.querySelector('li.realizations-section');
-
-  //     let contactSectionIsActive = false;
-
-  //     contactSectionPhoto.style.transform = `scale(0.6) translateX(${(window.innerWidth / 1000) * 26}%)`;
-
-  //     window.addEventListener("resize", () => {
-  //       if(!(contactSectionIsActive)) contactSectionPhoto.style.transform = `scale(0.6) translateX(${(window.innerWidth / 1000) * 26}%)`;
-  //     });
-
-  //     contactSection.addEventListener("mouseover", () => {
-  //       if(!(contactSectionIsActive)) contactSectionPhoto.style.transform = `scale(0.65) translateX(${(window.innerWidth / 1000) * 26}%)`;
-  //     });
-
-  //     contactSection.addEventListener("mouseleave", () => {
-  //        if(!(contactSectionIsActive)) contactSectionPhoto.style.transform = `scale(0.6) translateX(${(window.innerWidth / 1000) * 26}%)`;
-  //     });
-
-  //     contactSection.addEventListener("click", () => {
-  //       contactSectionPhoto.style.transform = `scale(0.6) translateX(0)`;
-  //        if(!(contactSectionIsActive)) contactSectionIsActive = true;
-  //     });
-
-  //     aboutSection.addEventListener("click", () => {
-  //        if(contactSectionIsActive) { 
-  //         contactSectionPhoto.style.transform = `scale(0.6) translateX(${(window.innerWidth / 1000) * 26}%)`;
-  //         contactSectionIsActive = false;
-  //       }
-  //     });
-
-  //     servicesSection.addEventListener("click", () => {
-  //        if(contactSectionIsActive) { 
-  //         contactSectionPhoto.style.transform = `scale(0.6) translateX(${(window.innerWidth / 1000) * 26}%)`;
-  //         contactSectionIsActive = false;
-  //       }
-  //     });
-
-  //     realizationsSection.addEventListener("click", () => {
-  //        if(contactSectionIsActive) { 
-  //         contactSectionPhoto.style.transform = `scale(0.6) translateX(${(window.innerWidth / 1000) * 26}%)`;
-  //         contactSectionIsActive = false;
-  //       }
-  //     });
-  //   }
-  // });
 
   React.useLayoutEffect(() => {
     const introVideo = document.querySelector('.intro-video');
