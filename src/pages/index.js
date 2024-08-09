@@ -6,6 +6,8 @@ import { Link } from "gatsby";
 
 import LogoIcon from "../assets/icons/LogoIcon";
 import BrandRectangleIcon from "../assets/icons/brandRectangleIcon";
+import SignatureBlackIcon from "../assets/icons/SignatureBlackIcon";
+import SignatureLightIcon from "../assets/icons/SignatureLightIcon";
 import introVideo from "../assets/videos/Logo_BLK_BKG.mp4";
 
 const PageWrapper = styled.div`
@@ -111,10 +113,18 @@ const ListSections = styled.ul`
       line-height: ${({ theme }) => theme.lineheight.body};
       font-weight: 300;
       letter-spacing: 0.01em;
+
+      span {
+        display: block;
+        margin-top: 8px;
+      }
     }
 
-    .portfolio-link-box {
+    .portfolio-links-box {
       margin-top: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
 
       .portfolio-link {
         display: block;
@@ -124,6 +134,12 @@ const ListSections = styled.ul`
         color: ${({ theme }) => theme.colors.text.primary};  
         font-weight: 600;
         text-decoration: none;
+
+        &.disabled {
+          border: 2px solid ${({ theme }) => theme.colors.border.disabled};
+          color: ${({ theme }) => theme.colors.text.disabled};  
+          background-color: ${({ theme }) => theme.colors.background.disabled}; ;
+        }
       }
     }
 
@@ -188,7 +204,7 @@ const ListSections = styled.ul`
 
   li.contact-section .contact-data-box {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 4px;
     margin-top: 24px;
     color: ${({ theme }) => theme.colors.text.primary};
@@ -197,12 +213,28 @@ const ListSections = styled.ul`
       font-size: ${({ theme }) => theme.font.body.small};
     }
 
-    .phone-link-box, .email-link-box, .adress-data-box {
+    .contact-left-column, .contact-right-column {
       display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex-basis: 50%;
+    }
+
+    .adress-data-box {
+      display: flex;
+      flex-direction: column;
       gap: 4px;
     }
 
-    .phone-link-box a, .email-link-box a, .adress-data-box span {
+    .contact-right-column {
+      align-items: end;
+
+      .linkedin-link-box {
+        align-items: end;
+      }
+    }
+
+    .phone-link-box a, .email-link-box a, .linkedin-link-box a, .adress-data-box span {
       color: ${({ theme }) => theme.colors.text.primary};
       text-decoration: none;
       font-size: ${({ theme }) => theme.font.body.small};
@@ -216,6 +248,16 @@ const ListSections = styled.ul`
   li.contact-section {
     .second-description {
       margin-top: 24px;
+    }
+
+    .signature-icon-box {
+      position: absolute;
+      bottom: 0;
+      left: 16px;
+
+      svg {
+        width: 140px;
+      }
     }
 
     .bcg-mobile-photo-box {
@@ -289,23 +331,31 @@ const ListSections = styled.ul`
           transition: opacity .6s ease-in-out;
         }
 
-        .portfolio-link-box {
+        .portfolio-links-box {
           margin-top: 16px;
 
           .portfolio-link {
             padding: 12px 24px;
             width: fit-content;
 
-            &:hover {
+            /* &:hover {
               background-color: ${({ theme }) => theme.colors.background.secondary};;
-            }
+            } */
           }
+        }
+
+        .contact-texts-box {
+          max-width: 550px;
         }
 
         .contact-data-box {
           opacity: 0;
           transition: opacity .6s ease-in-out;
           margin-left: 40px;
+
+          .contact-right-column { 
+            align-items: flex-start;
+          }
 
           span {
             font-size: ${({ theme }) => theme.font.body.regular};
@@ -421,6 +471,19 @@ const ListSections = styled.ul`
     li.about-section .description, li.services-section .description, li.realizations-section .description {
       padding-bottom: 16px;
       border-bottom: 1px solid ${({theme}) => theme.colors.background.secondary};;
+    }
+
+    li.contact-section .signature-icon-box {
+      opacity: 0;
+      transition: opacity .6s ease-in-out;
+
+      svg {
+        width: 16vw;
+      }
+    } 
+
+    li.contact-section.active .signature-icon-box {
+      opacity: 100;
     }
 
     li.contact-section .bcg-desktop-photo-box, li.contact-section:hover .bcg-desktop-photo-box  {
@@ -548,7 +611,6 @@ const IndexPage = () => {
     } else {
        window.addEventListener("load", () => {
        introVideo.play();
-       console.log('load');
     });
     }
    
@@ -569,7 +631,7 @@ const IndexPage = () => {
                 <div className="logo-and-title-box">
                 {" "}
                   <div className="logo-box">
-                    <a href="/" class="logo-link">
+                    <a href="/" className="logo-link">
                       <LogoIcon />
                     </a>
                   </div>
@@ -579,19 +641,20 @@ const IndexPage = () => {
                   </h1>
                 </div>
                 <p className="description">
-                  <b>SEGMENTS</b> to firma stworzona z pasji do budownictwa, kreowania wyjątkowych przestrzeni oraz dostarczania wysokiej jakości usług dla przemysłu. Nasz zespół liczy 50 zdolnych i wyjątkowych osób, które nie znają rzeczy niemożliwych i dążą do doskonałości. W SEGMENTS zespół składa się z 30 specjalistów przemysłowych oraz 20 ekspertów w dziedzinie budownictwa.<br /><br />
-                  <b>Nasza filozofia</b><br /><br />
-                  Wierzymy, że połączenie pasji z profesjonalizmem jest kluczem do osiągnięcia najwyższej jakości usług. Nasza firma kładzie nacisk na innowacyjność, precyzję i ciągłe dążenie do doskonałości. Niezależnie od projektu, nasz zespół podejmuje się wyzwań z determinacją i zaangażowaniem.
+                  <strong>SEGMENTS</strong> to firma stworzona z pasji do budownictwa, kreowania wyjątkowych przestrzeni oraz dostarczania wysokiej jakości usług dla przemysłu. Nasz zespół liczy pięćdziesiąt zdolnych i wyjątkowych osób, które nie znają słów nie da się.<br /><br />
+                  <strong>Nasze motta</strong><br /><br />
+                  1. Dobry może być lepszy, lepszy może być najlepszy, a najlepszy nigdy nie powinien przestać się rozwijać. <br />
+                  <span>2. By nie popełniać błędów trzeba mieć doświadczenie, żeby mieć doświadczenie trzeba popełniać błędy.</span>
                 </p>
                 <div className="brand-rectangle-icon-box">
                   <BrandRectangleIcon />
                 </div>
                 <div className="bcg-mobile-photo-box">
-                  <StaticImage src="../assets/images/about-bcg-mobile.webp" loading="eager"></StaticImage>
+                  <StaticImage src="../assets/images/about-bcg-mobile.webp" loading="eager" alt="segments about"></StaticImage>
                 </div>
               </div>   
               <div className="bcg-desktop-photo-box">
-                <StaticImage src="../assets/images/about-bcg-desktop.webp" loading="eager"></StaticImage>
+                <StaticImage src="../assets/images/about-bcg-desktop.webp" loading="eager" alt="segments about"></StaticImage>
               </div> 
             </li>
             <li className="list-item services-section">
@@ -601,20 +664,21 @@ const IndexPage = () => {
                   <span className="small-title">Usługi</span>
                 </h1>
                 <p className="description">
-                  <b style={{fontSize: "16px"}}>Budownictwo i nieruchomości</b><br /><br />
-                  Jesteśmy pasjonatami budownictwa i nieruchomości. Oferujemy: uzbrajanie terenów, budownictwo jednorodzinne i wielorodzinne, nowoczesne projektowanie, sprzedaż inwestycji deweloperskich. Naszym priorytetem jest jakość i innowacyjność. Dołącz do naszej pasjonującej podróży!<br /><br />
-                  <b style={{fontSize: "16px"}}>Przemysł</b> <br /><br />
-                  SEGMENTS to butikowy dostawca usług przemysłowych. Oferujemy budowę linii produkcyjnych, spawalnictwo, utrzymanie ruchu, kontrolę jakości, naprawy maszyn, wsparcie logistyczne i produkcyjne. Zaufaj naszym specjalistom w zapewnieniu najwyższej jakości usług.
+                  <strong style={{fontSize: "16px"}}>Budownictwo i nieruchomości</strong><br /><br />
+                 Jesteśmy pasjonatami budownictwa i nieruchomości. Płynnie przeprowadzimy proces od nabycia gruntu poprzez projekt, budowę, odbiory a kończąc na sprzedaży.<br /><br />
+
+                  <strong style={{fontSize: "16px"}}>Przemysł</strong> <br /><br />
+                  SEGMENTS to butikowy dostawca usług przemysłowych. Oferujemy budowę linii produkcyjnych, spawalnictwo, utrzymanie ruchu, kontrolę jakości, naprawy maszyn, wsparcie logistyczne i produkcyjne. 
                 </p>
                 <div className="brand-rectangle-icon-box">
                   <BrandRectangleIcon />
                 </div>
                 <div className="bcg-mobile-photo-box">
-                  <StaticImage src="../assets/images/services-bcg-mobile.webp" loading="eager"></StaticImage>
+                  <StaticImage src="../assets/images/services-bcg-mobile.webp" loading="eager" alt="segments services"></StaticImage>
                 </div>
               </div>
               <div className="bcg-desktop-photo-box">
-                <StaticImage src="../assets/images/services-bcg-desktop.webp" loading="eager"></StaticImage>
+                <StaticImage src="../assets/images/services-bcg-desktop.webp" loading="eager" alt="segments services"></StaticImage>
               </div> 
             </li>
             <li className="list-item realizations-section">
@@ -624,22 +688,23 @@ const IndexPage = () => {
                   <span className="small-title">Realizacje</span>
                 </h1>
                 <p className="description">
-                  Jesteśmy dumni z naszych licznych realizacji, które obejmują zarówno nowoczesne apartamenty, przestrzenie komercyjne, jak i projekty infrastrukturalne. Każdy z naszych projektów to świadectwo naszego zaangażowania w najwyższą jakość i innowacyjne podejście do budownictwa. 
+                  Jesteśmy pasjonatami, a każdy z naszych projektów to świadectwo naszego zaangażowania w najwyższą jakość i innowacyjne podejście do przemysłu oraz budownictwa .
                   <br /><br />
-                  Zapraszamy do zapoznania się z naszym portfolio, które prezentuje naszą wszechstronność i zdolność do tworzenia przestrzeni, które inspirują i służą społeczności przez wiele lat.
-                  <div className="portfolio-link-box">
-                    <a href="" className="portfolio-link">Pobierz portfolio</a>
+                  Zapraszamy do zapoznania się z naszym portfolio.
+                  <div className="portfolio-links-box">
+                    <a href="" className="portfolio-link disabled">Pobierz portfolio budowlane</a>
+                    <a href="" className="portfolio-link disabled">Pobierz portfolio przemysłowe</a>
                   </div>
                 </p>
                 <div className="brand-rectangle-icon-box">
                   <BrandRectangleIcon />
                 </div>
                 <div className="bcg-mobile-photo-box">
-                  <StaticImage src="../assets/images/realizations-bcg-mobile.webp" loading="eager"></StaticImage>
+                  <StaticImage src="../assets/images/realizations-bcg-mobile.webp" loading="eager" alt="segments realizations"></StaticImage>
                 </div>
               </div>
               <div className="bcg-desktop-photo-box">
-                <StaticImage src="../assets/images/realizations-bcg-desktop.webp" loading="eager"></StaticImage>
+                <StaticImage src="../assets/images/realizations-bcg-desktop.webp" loading="eager" alt="segments realizations"></StaticImage>
               </div> 
             </li>
             <li className="list-item contact-section">
@@ -648,37 +713,54 @@ const IndexPage = () => {
                   <span className="big-title">Kontakt</span>
                   <span className="small-title">Kontakt</span>
                 </h1>
-                <div class="contact-texts-box">
+                <div className="contact-texts-box">
                   <p className="description">
-                    Masz pytania, chcesz dowiedzieć się więcej lub umówić się na spotkanie? Skorzystaj z poniższych danych kontaktowych:
+                    Masz pytania, chcesz dowiedzieć się więcej? Skorzystaj z poniższych danych kontaktowych:
                   </p>
                   <div className="contact-data-box">
-                    <div className="phone-link-box">
-                      <span>Telefon:</span>
-                      <a href="tel:+48603637908"><b>+48 603 637 908</b></a>
+                    <div className="contact-left-column">
+                      <div className="company-name-box">
+                        <span><strong>SEGMENTS. Sp. z o.o.</strong></span>
+                      </div>
+                      <div className="nip-box">
+                        <span>PL5532580093</span>
+                      </div>
+                      <div className="adress-data-box">
+                        <span>43-300 Bielsko-Biała, Polska</span>
+                        <span>ul. Architektów 20</span>
+                      </div>
                     </div>
-                    <div className="email-link-box">
-                      <span>E-mail:</span>
-                      <a href= "mailto:j.duraj@segments.pl"><b>j.duraj@segments.pl</b></a>
-                    </div>
-                    <div className="adress-data-box">
-                      <span>Adres:</span>
+                    <div className="contact-right-column">
+                      <div className="ceo-name-box">
+                        <span><strong>Jakub Duraj</strong></span>
+                      </div>
+                      <div className="email-link-box">
+                        <a href= "mailto:j.duraj@segments.pl">j.duraj@segments.pl</a>
+                      </div>
+                      <div className="phone-link-box">
+                        <a href="tel:+48603637908">+48 603 637 908</a>
+                      </div>
+                      <div className="linkedin-link-box">
+                        <a href="https://linkedin.com/in/jd-segments">Linkedin</a>
+                      </div>
                     </div>
                   </div>
                   <p className="second-description description">
-                    Najpiękniejsze historie zaczynają się od jednego telefonu. Dlatego nie wahaj się skontaktować - jestem tutaj, aby Ci pomóc!<br /><br />
-                    <b>Jakub Duraj</b>
+                    Najpiękniejsze historie zaczynają się od jednego telefonu, a ten powyżej jest bezpośrednio do mnie.
                   </p>
                 </div>
                 <div className="brand-rectangle-icon-box">
                   <BrandRectangleIcon />
                 </div>
+                <div className="signature-icon-box">
+                  <SignatureLightIcon />
+                </div>
                 <div className="bcg-mobile-photo-box">
-                  <StaticImage src="../assets/images/contact-bcg-mobile.webp" loading="eager"></StaticImage>
+                  <StaticImage src="../assets/images/contact-bcg-mobile.webp" loading="eager" alt="segments contact"></StaticImage>
                 </div>
               </div>
               <div className="bcg-desktop-photo-box">
-                <StaticImage src="../assets/images/contact-bcg-desktop.webp" loading="eager"></StaticImage>
+                <StaticImage src="../assets/images/contact-bcg-desktop.webp" loading="eager" alt="segments contact"></StaticImage>
               </div> 
             </li>
           </ListSections>
